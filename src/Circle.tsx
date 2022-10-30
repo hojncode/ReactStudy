@@ -1,3 +1,4 @@
+import { useState } from "react";
 import styled from "styled-components"
 
 interface ContainerProps { // interface 는 object shape (객체 모양)을 타입스크립트에서 설명해주는 개념.
@@ -23,10 +24,10 @@ interface CircleProps {
 
 //뷰
 function Circle({bgColor, borderColor, text = "상위 컴포넌트에서 text props가 없을 시 , 현재 텍스트가 보여집니다"} : CircleProps) {
+    const [value,setValue] = useState<string>("");
     return  ( 
-    <Container bgColor={bgColor} borderColor={borderColor ?? bgColor}>  
-        {text}
-    </Container>
+    <Container bgColor={bgColor} borderColor={borderColor ?? bgColor}>{text}</Container>
+
     )
 }
 
