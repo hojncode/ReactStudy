@@ -16,13 +16,3 @@ root.render(
     </ThemeProvider>
   </React.StrictMode>
 );
-
-// 다른 형식이지만 실행 가능 함. (주석처리 된 부분) 17버젼이라 , 18버젼에서는 사용하지 말 것.
-// ReactDOM.render(
-//   <React.StrictMode>
-//     <ThemeProvider theme={darkTheme}>
-//       <App />
-//     </ThemeProvider>
-//   </React.StrictMode>,
-//   document.getElementById("root")
-// );
