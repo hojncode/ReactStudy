@@ -78,14 +78,20 @@ function Coins() {
     return (
     <Container>
         <Header>
-            <Title>Coins/defaultPage</Title>
+            <Title>코인/defaultPage</Title>
         </Header>
         
-        {loading ? <Loader>"Loading...please wait"</Loader> : (<CoinsList>
+        {loading ? <Loader>"로딩중...please wait"</Loader> : (<CoinsList>
             {coins.map((coin)=> (
                 <Coin key={coin.id}>
-                    <Link to={`/${coin.id}`}>{coin.name} &rarr;
-                        <Img src={`https://coinicons-api.vercel.app/api/icon/${coin.symbol.toLowerCase()}`} alt="" className="" />
+                    <Link 
+                        to={{
+                            pathname: `/${coin.id}`,
+                            state: {name: coin.name},
+                    }}>
+                        <Img 
+                        src={`https://coinicons-api.vercel.app/api/icon/${coin.symbol.toLowerCase()}`} alt="" className="" />
+                        {coin.name} &rarr;
                     </Link>   
                 </Coin>
             ))}
