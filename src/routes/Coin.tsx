@@ -52,7 +52,7 @@ export default Coin;
 
 
 
-
+//깃 푸시용 테스트 주석
 // const {coinId} = useParams<{coinId:string}>();
 // 를 interface 를 사용해서 정의 할 수 있다.
 // ===
