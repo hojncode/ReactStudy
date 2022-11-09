@@ -50,8 +50,6 @@ const Coin = styled.li`
             color: ${(props)=> props.theme.accentColor};
         }
     }
-
-
 `
 
 interface CoinInterface {
@@ -69,28 +67,34 @@ function Coins() {
     const [loading, setLoading] = useState(true);
     useEffect(()=> {
         (async()=> {
-           const response = await fetch("https://api.coinpaprika.com/v1/coins");
-           const json = await response.json();
-           setCoins(json.slice(0,10));
-           setLoading(false);
+            const response = await fetch("https://api.coinpaprika.com/v1/coins");
+            const json = await response.json();
+            setCoins(json.slice(0,10));
+            setLoading(false);
         })();
     },[])
     return (
     <Container>
         <Header>
-            <Title>Coins/defaultPage</Title>
+            <Title>코인/defaultPage</Title>
         </Header>
-        
-        {loading ? <Loader>"Loading...please wait"</Loader> : (<CoinsList>
-            {coins.map((coin)=> (
-                <Coin key={coin.id}>
-                    <Link to={`/${coin.id}`}>{coin.name} &rarr;
-                        <Img src={`https://coinicons-api.vercel.app/api/icon/${coin.symbol.toLowerCase()}`} alt="" className="" />
-                    </Link>   
-                </Coin>
-            ))}
-        </CoinsList>)}
-        
+        {loading ? 
+        <Loader>"로딩중...please wait"</Loader> : 
+            (<CoinsList>
+                {coins.map((coin)=> (
+                    <Coin key={coin.id}>
+                        <Link 
+                            to={{
+                                pathname: `/${coin.id}`,
+                                state: {name: coin.name},
+                        }}>
+                            <Img 
+                            src={`https://coinicons-api.vercel.app/api/icon/${coin.symbol.toLowerCase()}`} alt="" className="" />
+                            {coin.name} &rarr;
+                        </Link>   
+                    </Coin>
+                ))}
+            </CoinsList>)}
     </Container>
     )
 }
